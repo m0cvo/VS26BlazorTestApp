@@ -1,0 +1,38 @@
+﻿@page "/antcalc"
+@rendermode InteractiveServer
+
+<PageTitle>AntCalc</PageTitle>		
+
+<h1>AntCalc</h1>
+<h3>Copyright &copy; N.Booth 2025 for Mogpie</h3>
+
+<div class="custom-card">
+<input type="number" title="Please enter frequency in MHz: " @bind="frequency" />
+<button class="btn btn-primary" @onclick="Calculate">Calculate</button>
+
+<p>Wavelength: @wavelength m in free space</p>
+<p>Dipole Length: @dipoleLength m</p>
+<p>Quarter Wave Length: @quarterWaveLength m</p>
+<p>Half Wave Length: @halfWaveLength m</p>
+<p>Loop Length: @loopLength m</p>
+</div>
+
+@code {
+	private double frequency { get; set; }
+	private double wavelength;
+	private double dipoleLength;
+	private double quarterWaveLength;
+	private double halfWaveLength;
+	private double loopLength;
+	static double velocityFactor = 0.96;
+
+	private void Calculate()
+	{
+
+		wavelength = (300 / frequency);
+		dipoleLength = (wavelength * 0.5) * velocityFactor;
+		quarterWaveLength = (wavelength * 0.25) * velocityFactor;
+		halfWaveLength = (wavelength * 0.5) * velocityFactor;
+		loopLength = (wavelength * velocityFactor);
+	}
+}
