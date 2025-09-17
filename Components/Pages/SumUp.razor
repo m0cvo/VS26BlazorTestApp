@@ -1,0 +1,28 @@
+﻿@page "/sumup"
+@rendermode InteractiveServer
+<PageTitle>SumUp</PageTitle>
+
+<h3>Adding numbers....</h3>
+
+Enter an integer in each box and click the button to see their sum.
+
+<input type="number" @bind="number1" /> 
++
+<input type="number" @bind="number2" />
+
+<button class="btn btn-primary" @onclick="GetResult">Get Sum</button>
+<p>@message</p>
+
+@code {
+	private int number1;
+	private int number2;
+	public string message;
+
+	static int Sum(int a, int b) => a + b;
+
+	void GetResult()
+	{
+		var result = Sum(number1, number2);
+		message = ($"The sum of {number1} and {number2} is {result}");
+	}
+}
