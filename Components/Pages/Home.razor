@@ -1,0 +1,18 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+Please enter your name: <input type="text" @bind="name" />
+<button class="btn btn-primary" @onclick="@getName">Click</button>
+<p>@message</p>
+
+@code {
+	private string name;
+	private string message;
+
+	private void getName()
+	{
+		message = $"Hello {name}";
+	}
+}
